@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import { AuthProvider } from './Context/auth';
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <BrowserRouter>
+      <ToastContainer/>
+        <Header />
+        <App />
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>
   </React.StrictMode>
 );
 
