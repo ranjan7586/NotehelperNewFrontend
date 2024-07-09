@@ -13,6 +13,7 @@ const Notes = () => {
         const { data } = await axios.get(`${config.apiUrl}/api/v1/domains`);
         setDomains(data?.domains);
     }
+ 
     useEffect(() => {
         getAllNotes();
         getAllDomains();
