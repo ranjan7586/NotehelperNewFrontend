@@ -1,6 +1,40 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import config from '../config';
 
 const Notes = () => {
+    const [notes, setNotes] = useState({});
+    const [domains, setDomains] = useState({});
+    const getAllNotes = async () => {
+        const { data } = await axios.get(`${config.apiUrl}/api/v1/notes`);
+        setNotes(data.notes);
+    }
+    const getAllDomains = async () => {
+        const { data } = await axios.get(`${config.apiUrl}/api/v1/domains`);
+        setDomains(data?.domains);
+    }
+    useEffect(() => {
+        getAllNotes();
+        getAllDomains();
+    }, []);
+    useEffect(() => {
+        console.log(Object.values(domains))
+    }, [domains]);
+    const noteStyle = (imageUrl) => ({
+        backgroundImage: `url(${imageUrl})`,
+    });
+
+    const anchorStyle = () => ({
+        color: 'white',
+        textDecoration: 'none',
+    });
+    const notesArray = Object.values(notes); // Convert the object to an array
+    const domainArray = Object.values(domains);
+    const firstSixNotes = notesArray.slice(0, 6);
+    const imageStyle = () => ({
+        height: '200px',
+        width: '370px'
+    })
     return (
         <div>
             <div>
@@ -10,8 +44,8 @@ const Notes = () => {
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="text-content">
-                                    <h4>new arrivals</h4>
-                                    <h2>sixteen products</h2>
+                                    <h4>All notes</h4>
+                                    <h2>let's learn</h2>
                                 </div>
                             </div>
                         </div>
@@ -23,136 +57,43 @@ const Notes = () => {
                             <div className="col-md-12">
                                 <div className="filters">
                                     <ul>
-                                        <li className="active" data-filter="*">All Products</li>
-                                        <li data-filter=".des">Featured</li>
-                                        <li data-filter=".dev">Flash Deals</li>
-                                        <li data-filter=".gra">Last Minute</li>
+                                        <li className="active" data-filter="*">All Domains</li>
+                                        {domainArray?.map((note, index) => (
+                                            <li className="" data-filter="*">{note?.name}</li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
                             <div className="col-md-12">
                                 <div className="filters-content">
                                     <div className="row grid">
-                                        <div className="col-lg-4 col-md-4 all des">
-                                            <div className="product-item">
-                                                <a href="#"><img src="images/product_01.jpg" alt /></a>
-                                                <div className="down-content">
-                                                    <a href="#">
-                                                        <h4>Tittle goes here</h4>
-                                                    </a>
-                                                    <h6>$18.25</h6>
-                                                    <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                                                    <ul className="stars">
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                    </ul>
-                                                    <span>Reviews (12)</span>
+                                        {firstSixNotes?.map((note, index) => (
+                                            <div key={index} className="col-lg-4 col-md-4 all des">
+                                                <div className="product-item">
+                                                    <a href="#"><img style={imageStyle()} src={note?.imageUrl} /></a>
+                                                    <div className="down-content">
+                                                        <a href="#">
+                                                            <h4>{note?.title}</h4>
+                                                        </a>
+                                                        <h6 className='mb-3'>{note?.name}</h6>
+                                                        <p>{note?.domain?.name}</p>
+                                                        <ul className="stars">
+                                                            <li><i className="fa fa-star" /></li>
+                                                            <li><i className="fa fa-star" /></li>
+                                                            <li><i className="fa fa-star" /></li>
+                                                            <li><i className="fa fa-star" /></li>
+                                                            <li><i className="fa fa-star" /></li>
+                                                        </ul>
+                                                        <span><button className="btn btn-danger mt-5">
+                                                            <a style={anchorStyle()} target="_blank" href={note?.noteUrl} rel="noopener noreferrer">
+                                                                Download
+                                                            </a>
+                                                        </button></span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="col-lg-4 col-md-4 all dev">
-                                            <div className="product-item">
-                                                <a href="#"><img src="images/product_02.jpg" alt /></a>
-                                                <div className="down-content">
-                                                    <a href="#">
-                                                        <h4>Tittle goes here</h4>
-                                                    </a>
-                                                    <h6>$16.75</h6>
-                                                    <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                                                    <ul className="stars">
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                    </ul>
-                                                    <span>Reviews (24)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-4 col-md-4 all gra">
-                                            <div className="product-item">
-                                                <a href="#"><img src="images/product_03.jpg" alt /></a>
-                                                <div className="down-content">
-                                                    <a href="#">
-                                                        <h4>Tittle goes here</h4>
-                                                    </a>
-                                                    <h6>$32.50</h6>
-                                                    <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                                                    <ul className="stars">
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                    </ul>
-                                                    <span>Reviews (36)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-4 col-md-4 all gra">
-                                            <div className="product-item">
-                                                <a href="#"><img src="images/product_04.jpg" alt /></a>
-                                                <div className="down-content">
-                                                    <a href="#">
-                                                        <h4>Tittle goes here</h4>
-                                                    </a>
-                                                    <h6>$24.60</h6>
-                                                    <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                                                    <ul className="stars">
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                    </ul>
-                                                    <span>Reviews (48)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-4 col-md-4 all dev">
-                                            <div className="product-item">
-                                                <a href="#"><img src="images/product_05.jpg" alt /></a>
-                                                <div className="down-content">
-                                                    <a href="#">
-                                                        <h4>Tittle goes here</h4>
-                                                    </a>
-                                                    <h6>$18.75</h6>
-                                                    <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                                                    <ul className="stars">
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                    </ul>
-                                                    <span>Reviews (60)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-4 col-md-4 all des">
-                                            <div className="product-item">
-                                                <a href="#"><img src="images/product_06.jpg" alt /></a>
-                                                <div className="down-content">
-                                                    <a href="#">
-                                                        <h4>Tittle goes here</h4>
-                                                    </a>
-                                                    <h6>$12.50</h6>
-                                                    <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                                                    <ul className="stars">
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                    </ul>
-                                                    <span>Reviews (72)</span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        ))}
+
                                     </div>
                                 </div>
                             </div>

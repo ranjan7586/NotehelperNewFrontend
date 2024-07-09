@@ -14,7 +14,7 @@ const Header = () => {
      }
     return (
         <>
-            <header className>
+            <header>
                 <nav className="navbar navbar-expand-lg">
                     <div className="container">
                         <a className="navbar-brand" href="index.html"><h2><em>Notehelper</em></h2></a>
@@ -48,7 +48,7 @@ const Header = () => {
                                     </li>
                                 </>) : (<>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="about.html">Dashboard</a>
+                                        <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
                                     </li>
                                     <li className="nav-item">
                                         <NavLink className="nav-link" onClick={handleLogout} to="/login">Log out</NavLink>

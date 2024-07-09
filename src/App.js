@@ -7,6 +7,7 @@ import Registration from './Pages/Registration'
 import Login from './Pages/Login';
 import Contact from './Pages/Contact';
 import { ToastContainer } from 'react-toastify';
+import Dashboard from './Pages/Dashboard';
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
       <Route path='/registration' element={<Registration />} />
       <Route path='/login' element={<Login />} />
       <Route path='/contact' element={<Contact />} />
+      <Route path='/dashboard' element={<Dashboard />} />
     </Routes>
   )
 }

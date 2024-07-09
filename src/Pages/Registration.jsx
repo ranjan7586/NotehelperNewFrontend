@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
+import config from '../config';
 
 const Registration = () => {
     const [loading, setLoading] = useState(false); // Add a loading state
@@ -24,7 +25,7 @@ const Registration = () => {
 
         const { name, email, password, cpassword, answer } = user;
 
-        const res = await fetch("/api/v1/register", {
+        const res = await fetch(`${config.apiUrl}/api/v1/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -88,16 +89,16 @@ const Registration = () => {
                         </div>
                         <div className="col-md-8 mx-auto">
                             <div className="contact-form">
-                                <form id="contact" action method="post">
+                                <form id="contact" action method="post" onSubmit={postData}>
                                     <div className="row">
                                         <div className="col-lg-12 col-md-12 col-sm-12">
                                             <fieldset>
-                                                <input name="name" type="text" className="form-control" id="name" placeholder="Full Name" required />
+                                                <input name="name" type="text" className="form-control" value={user.name} onChange={handleInputs} id="name" placeholder="Full Name" required />
                                             </fieldset>
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12">
                                             <fieldset>
-                                                <input name="email" type="text" className="form-control" id="email" placeholder="E-Mail Address"
+                                                <input name="email" type="text" className="form-control" value={user.email} onChange={handleInputs} id="email" placeholder="E-Mail Address"
                                                     required />
                                             </fieldset>
                                         </div>
