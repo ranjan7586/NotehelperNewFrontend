@@ -4,11 +4,9 @@ import { useAuth } from '../Context/auth';
 import { toast } from 'react-toastify';
 
 const Header = () => {
-    const [auth, setAuth] = useAuth();
+    const { auth, updateAuth } = useAuth();
     const handleLogout=()=>{
-        setAuth({
-           ...auth,user:null,token:""
-        })
+        updateAuth(null,null);
         localStorage.removeItem('auth');
         toast.success("Logout Successfully");
      }

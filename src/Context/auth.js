@@ -8,28 +8,41 @@ const AuthProvider = ({ children }) => {
     user: null,
     token: ""
   });
-  //default axios
-  axios.defaults.headers.common['Authorization']=auth?.token
 
-    useEffect(()=>{
-        const data=localStorage.getItem('auth');
-        if(data){
-            const parseData=JSON.parse(data);
-            setAuth({
-                ...auth,
-                user:parseData.user,token:parseData.token
-            });
-        }
-        //eslint-disable-next-line
-    },[])
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = auth?.token;
+  }, [auth.token]);
+
+  useEffect(() => {
+    const data = localStorage.getItem('auth');
+    if (data) {
+      const parsedData = JSON.parse(data);
+      setAuth({
+        user: parsedData.user,
+        token: parsedData.token
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (auth.user && auth.token) {
+      localStorage.setItem('auth', JSON.stringify(auth));
+    } else {
+      localStorage.removeItem('auth');
+    }
+  }, [auth]);
+
+  const updateAuth = (user, token) => {
+    setAuth({ user, token });
+  };
+
   return (
-    <AuthContext.Provider value={[auth, setAuth]}>
+    <AuthContext.Provider value={{ auth, updateAuth }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Custom hook
 const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };

@@ -2,9 +2,10 @@ import React from 'react'
 import { useAuth } from '../Context/auth'
 import Banner from '../Components/Banner';
 import Latest from '../Components/Latest';
+import AdminDashboard from './AdminPages/AdminDashboard';
 
 const Dashboard = () => {
-    const [auth, setAuth] = useAuth();
+    const { auth, updateAuth } = useAuth();
     console.log(auth);
     if (auth?.user?.role == "admin") {
         return (
@@ -21,7 +22,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <Banner />
+                <AdminDashboard/>
             </div>
         )
     }

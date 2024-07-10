@@ -9,6 +9,11 @@ import Contact from './Pages/Contact';
 import { ToastContainer } from 'react-toastify';
 import Dashboard from './Pages/Dashboard';
 import AdminDashboard from './Pages/AdminPages/AdminDashboard';
+import AdminUpload from './Pages/AdminPages/AdminUpload';
+import AdminNotes from './Pages/AdminPages/AdminNotes';
+import AdminUpdate from './Pages/AdminPages/AdminUpdate';
+import AdminDomain from './Pages/AdminPages/AdminDomain';
+import AdminUsers from './Pages/AdminPages/AdminUsers';
 
 
 const App = () => {
@@ -21,6 +26,11 @@ const App = () => {
       <Route path='/login' element={<Login />} />
       <Route path='/contact' element={<Contact />} />
       <Route path='/dashboard' element={<Dashboard />} />
+      <Route path='/admin/upload-note' element={<AdminUpload />} />
+      <Route path='/admin/notes' element={<AdminNotes />} />
+      <Route path='/admin/users' element={<AdminUsers />} />
+      <Route path='/admin/create-domain' element={<AdminDomain />} />
+      <Route path='/admin/update-note/:slug' element={<AdminUpdate />} />
       <Route path='/search' element={<AdminDashboard />} />
     </Routes>
   )

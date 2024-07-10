@@ -7,7 +7,7 @@ import config from '../config';
 
 
 const Login = () => {
-    const [auth, setAuth] = useAuth()
+    const { auth, updateAuth } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const [loading, setLoading] = useState(false); // Add a loading state
@@ -54,7 +54,7 @@ const Login = () => {
         else {
             toast.success("Login Successful");
             console.log(data.message)
-            setAuth({ ...auth, user: data.user, token: data.token })
+            updateAuth(data.user, data.token )
             localStorage.setItem('auth', JSON.stringify(data));
             navigate("/notes");
             setLoading(false)
