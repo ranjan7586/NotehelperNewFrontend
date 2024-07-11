@@ -8,13 +8,15 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import { AuthProvider } from './Context/auth';
 import { ToastContainer } from 'react-toastify';
+import ScrollToTop from './Context/ScrollToTop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
       <BrowserRouter>
-      <ToastContainer/>
+        <ScrollToTop />
+        <ToastContainer />
         <Header />
         <App />
         <Footer />

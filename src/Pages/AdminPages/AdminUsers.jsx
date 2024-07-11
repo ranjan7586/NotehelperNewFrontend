@@ -5,26 +5,41 @@ import AdminMenu from '../../Components/AdminMenu';
 import AdminView from '../../Components/AdminView';
 import config from '../../config';
 import { useAuth } from '../../Context/auth';
+import { Navigate, useNavigate } from 'react-router-dom';
+import Dashboard from '../Dashboard';
+
 const AdminUsers = () => {
     const [users, setUsers] = useState([]);
     const [userid, setUserId] = useState('');
     const [role, setRole] = useState('');
-    const {auth,updateAuth}=useAuth();
+    const { auth, updateAuth } = useAuth();
+
     const getUsers = async () => {
+        // console.log(axios.defaults.headers['common']);
         try {
-            const { data } = await axios.get(`${config.apiUrl}/api/v1/admin/get-users`)
-            console.log(data)
-            if (data?.success) {
-                setUsers(data.users)
+            if (auth) {
+                console.log(axios.defaults.headers.common['Authorization']);
+                
+                const { data } = await axios.get(`${config.apiUrl}/api/v1/admin/get-users`);
+                console.log(data)
+                if (data?.success) {
+                    setUsers(data.users)
+                }
             }
+
         } catch (error) {
             console.log(error)
         }
     }
-    useEffect(() => { getUsers();
-        console.log(auth)
-     }, [auth]);
-    
+    useEffect(() => {
+        if (auth.token && axios.defaults.headers.common['Authorization']) {
+            console.log(auth);
+            console.log(axios.defaults.headers.common['Authorization']);
+            getUsers();
+            // console.log(auth);
+        }
+    }, []);
+
     const handleRole = async (user) => {
         setUserId(user._id);
         // Use the state callback function to ensure updated state is used
@@ -52,6 +67,13 @@ const AdminUsers = () => {
             console.log(error);
         }
     };
+    if(auth?.user?.role!="admin"){
+        return(
+            <>
+                <Dashboard/>
+            </>
+        )
+    }
     return (
         <div>
             <AdminView />
@@ -75,12 +97,12 @@ const AdminUsers = () => {
 
                                     </thead>
                                     <tbody>
-                                        {users?.map((c,key) => (
+                                        {users?.map((c, key) => (
                                             <>
                                                 <tr key={key}>
-                                                    <td key={c._id}>{c.name}</td>
-                                                    <td key={c._id}>{c.email}</td>
-                                                    <td key={c._id}>{c.role}</td>
+                                                    <td >{c.name}</td>
+                                                    <td >{c.email}</td>
+                                                    <td >{c._id}</td>
                                                     {(c.role === "user") ? (
                                                         <td><button className='btn btn-danger ms-2' onClick={() => { handleRole(c) }}>Make Admin</button></td>
                                                     ) : (

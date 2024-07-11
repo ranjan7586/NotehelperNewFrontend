@@ -14,6 +14,12 @@ import AdminNotes from './Pages/AdminPages/AdminNotes';
 import AdminUpdate from './Pages/AdminPages/AdminUpdate';
 import AdminDomain from './Pages/AdminPages/AdminDomain';
 import AdminUsers from './Pages/AdminPages/AdminUsers';
+import UserUpload from './Pages/UserPages/UserUpload';
+import PrivacyPolicy from './Pages/PrivacyPolicy';
+import Address from './Pages/Address';
+import Disclaimer from './Pages/Disclaimer';
+import Feedback from './Pages/Feedback';
+import Search from './Pages/Search';
 
 
 const App = () => {
@@ -21,7 +27,12 @@ const App = () => {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/about' element={<AboutPage />} />
+      <Route path='/feedback' element={<Feedback />} />
+      <Route path='/address' element={<Address />} />
+      <Route path='/disclaimer' element={<Disclaimer />} />
+      <Route path='/privacy-policy' element={<PrivacyPolicy />} />
       <Route path='/notes' element={<Notes />} />
+      <Route path='/search' element={<Search />} />
       <Route path='/registration' element={<Registration />} />
       <Route path='/login' element={<Login />} />
       <Route path='/contact' element={<Contact />} />
@@ -31,7 +42,8 @@ const App = () => {
       <Route path='/admin/users' element={<AdminUsers />} />
       <Route path='/admin/create-domain' element={<AdminDomain />} />
       <Route path='/admin/update-note/:slug' element={<AdminUpdate />} />
-      <Route path='/search' element={<AdminDashboard />} />
+      <Route path='/user/upload-note' element={<UserUpload />} />
+
     </Routes>
   )
 }

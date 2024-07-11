@@ -3,13 +3,10 @@ import { Link, Navigate, NavLink } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
-import { useAuth } from '../../Context/auth'
+import { useAuth } from '../../Context/auth';
 import config from '../../config';
-import AdminMenu from '../../Components/AdminMenu';
-import Dashboard from '../Dashboard';
-
-
-const AdminDashboard = () => {
+import UserMenu from '../../Components/UserMenu';
+const UserDashboard = () => {
     const { auth, updateAuth } = useAuth();
     const [show, setShow] = useState(false);
     const [name, setName] = useState('');
@@ -50,14 +47,6 @@ const AdminDashboard = () => {
         getUserDetails();
     }, [auth]);
 
-    if(auth?.user?.role!="admin"){
-        return(
-            <>
-                <Dashboard/>
-            </>
-        )
-    }
-
     return (
         <div>
             {/* <div className="page-heading products-heading header-text">
@@ -72,7 +61,7 @@ const AdminDashboard = () => {
                     </div>
                 </div>
             </div> */}
-         <AdminMenu/>
+            <UserMenu />
             <div className='container'>
                 <div className='row'>
                     <div className='col-md-12'>
@@ -139,4 +128,4 @@ const AdminDashboard = () => {
     );
 };
 
-export default AdminDashboard;
+export default UserDashboard

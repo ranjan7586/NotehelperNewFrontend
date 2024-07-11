@@ -3,6 +3,7 @@ import { useAuth } from '../Context/auth'
 import Banner from '../Components/Banner';
 import Latest from '../Components/Latest';
 import AdminDashboard from './AdminPages/AdminDashboard';
+import UserDashboard from './UserPages/UserDashboard';
 
 const Dashboard = () => {
     const { auth, updateAuth } = useAuth();
@@ -41,7 +42,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <Latest />
+                <UserDashboard />
             </div>
         )
     }

@@ -5,6 +5,8 @@ import Swal from 'sweetalert2';
 import axios from 'axios'; import AdminView from '../../Components/AdminView'
 import Select from 'react-select';
 import config from '../../config';
+import { useAuth } from '../../Context/auth';
+import Dashboard from '../Dashboard';
 
 const AdminUpdate = () => {
     const navigate = useNavigate();
@@ -21,6 +23,8 @@ const AdminUpdate = () => {
     const [description, setDescription] = useState('');
     const [id, setId] = useState("")
     const [confirmed, setConfirmed] = useState(false);
+    const { auth, updateAuth } = useAuth();
+  
     //get single note
     const getSingleNote = async () => {
         try {
@@ -170,6 +174,13 @@ const AdminUpdate = () => {
             console.log(error)
             toast.error(error.message)
         }
+    };
+    if(auth?.user?.role!="admin"){
+        return(
+            <>
+                <Dashboard/>
+            </>
+        )
     }
     return (
 

@@ -4,13 +4,19 @@ import axios from 'axios';
 import config from '../../config';
 import AdminMenu from '../../Components/AdminMenu';
 import Select from 'react-select';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../Context/auth';
+import Dashboard from '../Dashboard';
+
 
 
 const AdminNotes = () => {
     const [notes, setNotes] = useState({});
     const [domains, setDomains] = useState([]);
     const [domain, setDomain] = useState();
+    const { auth, updateAuth } = useAuth();
+
     const getAllNotes = async () => {
         const { data } = await axios.get(`${config.apiUrl}/api/v1/notes`);
         setNotes(data.notes);
@@ -50,6 +56,13 @@ const AdminNotes = () => {
         setDomain(selectedOption);
         console.log(selectedOption.value);
     };
+    if(auth?.user?.role!="admin"){
+        return(
+            <>
+                <Dashboard/>
+            </>
+        )
+    }
     return (
         <div>
             <AdminView />

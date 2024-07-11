@@ -6,7 +6,10 @@ import config from '../../config';
 import Select from 'react-select';
 import AdminView from '../../Components/AdminView';
 import AdminMenu from '../../Components/AdminMenu';
+import { useAuth } from '../../Context/auth';
+import Dashboard from '../Dashboard';
 const AdminUpload = () => {
+
     const navigate = useNavigate();
     const [domains, setDomains] = useState([]);
     const [domain, setDomain] = useState(null);
@@ -16,6 +19,8 @@ const AdminUpload = () => {
     const [author, setAuthor] = useState('');
     const [description, setDescription] = useState('');
     const [loading, setLoading] = useState(false);
+    const { auth, updateAuth } = useAuth();
+  
     const getAllDomains = async () => {
         try {
             const { data } = await axios.get(`${config.apiUrl}/api/v1/domains`);
@@ -81,6 +86,13 @@ const AdminUpload = () => {
         } finally {
             setLoading(false); // Set loading to false after receiving the response
         }
+    }
+    if(auth?.user?.role!="admin"){
+        return(
+            <>
+                <Dashboard/>
+            </>
+        )
     }
 
     return (

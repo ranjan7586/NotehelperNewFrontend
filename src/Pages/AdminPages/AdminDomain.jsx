@@ -7,12 +7,18 @@ import AdminMenu from '../../Components/AdminMenu';
 import AdminView from '../../Components/AdminView';
 import DomainForm from '../../Components/DomainForm';
 import config from '../../config';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../Context/auth';
+import Dashboard from '../Dashboard';
+
 const AdminDomain = () => {
     const [visible, setVisible] = useState(false)
     const [selected, setSelected] = useState(null)
     const [updatedName, setUpdatedName] = useState("")
     const [domains, setDomains] = useState([])
-    const [name, setName] = useState('')
+    const [name, setName] = useState('');
+    const { auth, updateAuth } = useAuth();
+  
     //handle Form
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -84,7 +90,15 @@ const AdminDomain = () => {
             console.log(error)
             toast.error("Something Went Wrong in Deleting the Domains")
         }
+    };
+    if(auth?.user?.role!="admin"){
+        return(
+            <>
+                <Dashboard/>
+            </>
+        )
     }
+
     return (
         <div>
             <AdminView />
