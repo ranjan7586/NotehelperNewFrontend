@@ -1159,3 +1159,7 @@ footer .inner-content p a {
 .active{
     color:red;
 }
+.active button{
+    color:#fff;
+    background-color: #000;
+}

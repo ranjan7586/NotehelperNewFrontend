@@ -5,19 +5,29 @@ import { toast } from 'react-toastify';
 
 const Header = () => {
     const { auth, updateAuth } = useAuth();
-    const handleLogout=()=>{
-        updateAuth(null,null);
+    const handleLogout = () => {
+        updateAuth(null, null);
         localStorage.removeItem('auth');
         toast.success("Logout Successfully");
-     }
+    }
     return (
         <>
             <header>
                 <nav className="navbar navbar-expand-lg">
                     <div className="container">
-                        <a className="navbar-brand" href="index.html"><h2><em>Notehelper</em></h2></a>
-                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon" />
+                        <NavLink className="navbar-brand" to="/">
+                            <h2><em>Notehelper</em></h2>
+                        </NavLink>
+                        <button
+                            className="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarResponsive"
+                            aria-controls="navbarResponsive"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span className="navbar-toggler-icon"><i className="fa-solid fa-bars"></i></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarResponsive">
                             <ul className="navbar-nav ml-auto">
