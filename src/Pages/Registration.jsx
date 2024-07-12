@@ -12,12 +12,10 @@ const Registration = () => {
     let name, value;
     const handleInputs = (e) => {
 
-        console.log(e);
         name = e.target.name;
         value = e.target.value;
         setUser({ ...user, [name]: value })
     }
-    console.log(user);
     // form submission
     const postData = async (e) => {
         e.preventDefault();
@@ -37,8 +35,6 @@ const Registration = () => {
         const data = await res.json();
         const dataStatus = await res.status;
         // console.log(data);
-        console.log(data.message);
-        console.log(dataStatus);
 
         if (dataStatus === 422 || !data) {
             setLoading(false)
@@ -48,23 +44,18 @@ const Registration = () => {
                 }
             });
             // window.alert(data.message)
-            console.log(data.message);
         }
         else if (dataStatus === 421 || !data) {
             toast.error(data.message);
-            console.log(data.message)
             setLoading(false)
         }
         else {
             await toast.success(data.message);
-            console.log("Registration Suucessful")
             navigate("/login");
             setLoading(false)
             // history.push("/login");
         }
     }
-    console.log(process.env.REACT_APP_API);
-    console.log("lol ranjan");
     return (
         <div>
             <div className="page-heading about-heading header-text">

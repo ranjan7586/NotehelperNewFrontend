@@ -28,14 +28,12 @@ const UserUpload = () => {
             noteValues.append("image", image);
             noteValues.append("thenote", thenote);
             const { data } = await axios.post(`${config.apiUrl}/api/v1/notes/users/create-note`, noteValues);
-            console.log(data)
             if (data?.success) {
                 toast.success(`${name} is Created`);
                 navigate('/dashboard')
                 // getAllDomains();
             }
             else if (data?.status == 501) {
-                console.log(data.message);
                 toast.error(data.message)
             }
             else {

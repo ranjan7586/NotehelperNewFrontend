@@ -24,12 +24,14 @@ const AdminUpdate = () => {
     const [id, setId] = useState("")
     const [confirmed, setConfirmed] = useState(false);
     const { auth, updateAuth } = useAuth();
-  
+    if (auth?.user?.role != "admin") {
+        navigate('/dashboard');
+    }
+
     //get single note
     const getSingleNote = async () => {
         try {
             const { data } = await axios.get(`${config.apiUrl}/api/v1/notes/get-a-note/${params.slug}`);
-            console.log(data)
             setName(data.note.name)
             setId(data.note._id)
             setAuthor(data.note.author)
@@ -55,7 +57,6 @@ const AdminUpdate = () => {
         try {
             const { data } = await axios.get(`${config.apiUrl}/api/v1/domains`);
             if (data?.success) {
-                console.log(data);
                 setDomains(data?.domains);
             }
         } catch (error) {
@@ -70,7 +71,6 @@ const AdminUpdate = () => {
 
     // Get the domain object for the selected domain ID
     const selectedDomain = domains.find((d) => d._id === domain);
-    console.log(selectedDomain)
     const selectOptions = domains.map((c) => ({
         value: c._id,
         label: c.name,
@@ -87,7 +87,6 @@ const AdminUpdate = () => {
             noteValues.append("description", description);
             image && noteValues.append("image", image);
             thenote && noteValues.append("thenote", thenote);
-            console.log(name)
             const { data } = await axios.post(`${config.apiUrl}/api/v1/notes/${id}`, noteValues, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
@@ -97,7 +96,6 @@ const AdminUpdate = () => {
                 // getAllDomains();
             }
             else if (data?.status == 501) {
-                console.log(data.message);
                 toast.error(data.message)
             }
             else {
@@ -167,7 +165,6 @@ const AdminUpdate = () => {
             } else {
                 // User canceled the delete action
                 // You can add any desired handling here, e.g., show a message or do nothing
-                console.log('Deletion canceled by the user.');
                 return
             }
         } catch (error) {
@@ -175,13 +172,7 @@ const AdminUpdate = () => {
             toast.error(error.message)
         }
     };
-    if(auth?.user?.role!="admin"){
-        return(
-            <>
-                <Dashboard/>
-            </>
-        )
-    }
+
     return (
 
         <div>

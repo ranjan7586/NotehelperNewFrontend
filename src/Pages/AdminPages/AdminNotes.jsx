@@ -12,14 +12,25 @@ import Dashboard from '../Dashboard';
 
 
 const AdminNotes = () => {
-    const [notes, setNotes] = useState({});
+    const [notes, setNotes] = useState([]);
     const [domains, setDomains] = useState([]);
     const [domain, setDomain] = useState();
     const { auth, updateAuth } = useAuth();
+    const [page, setPage] = useState(1);
+    const [pages, setPages] = useState(1);
+    const limit = 6; // Define limit of notes per page
+    const [count, setCount] = useState(0); // Total number of notes
+    const navigate = useNavigate();
+    if(auth?.user?.role!="admin"){
+        navigate('/dashboard');
+    }
 
     const getAllNotes = async () => {
-        const { data } = await axios.get(`${config.apiUrl}/api/v1/notes`);
+        const { data } = await axios.get(`${config.apiUrl}/api/v1/notes?page=${page}&limit=${limit}`);
         setNotes(data.notes);
+        setNotes(data.notes);
+        setPages(Math.ceil(data.count / limit)); // Calculate total pages
+        setCount(data.count);
     }
     const getAllDomains = async () => {
         const { data } = await axios.get(`${config.apiUrl}/api/v1/domains`);
@@ -29,9 +40,8 @@ const AdminNotes = () => {
     useEffect(() => {
         getAllNotes();
         getAllDomains();
-    }, []);
+    }, [page]);
     useEffect(() => {
-        console.log(Object.values(domains))
     }, [domains]);
     const noteStyle = (imageUrl) => ({
         backgroundImage: `url(${imageUrl})`,
@@ -54,15 +64,7 @@ const AdminNotes = () => {
     }));
     const handleDomainSelect = (selectedOption) => {
         setDomain(selectedOption);
-        console.log(selectedOption.value);
     };
-    if(auth?.user?.role!="admin"){
-        return(
-            <>
-                <Dashboard/>
-            </>
-        )
-    }
     return (
         <div>
             <AdminView />
@@ -87,7 +89,7 @@ const AdminNotes = () => {
                             <div className="col-md-12">
                                 <div className="filters-content">
                                     <div className="row grid">
-                                        {firstSixNotes?.map((note, index) => (
+                                        {notes?.map((note, index) => (
                                             <div key={index} className="col-lg-4 col-md-4 all des">
                                                 <div className="product-item">
                                                     <a href="#"><img style={imageStyle()} src={note?.imageUrl} /></a>
@@ -126,13 +128,13 @@ const AdminNotes = () => {
                                 </div>
                             </div>
                             <div className="col-md-12">
-                                <ul className="pages">
-                                    <li><a href="#">1</a></li>
-                                    <li className="active"><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#"><i className="fa fa-angle-double-right" /></a></li>
-                                </ul>
+                            <ul className="pages">
+                                {Array.from({ length: pages }, (_, index) => (
+                                    <li key={index} className={index + 1 === page ? 'active' : ''}>
+                                        <button onClick={() => setPage(index + 1)}>{index + 1}</button>
+                                    </li>
+                                ))}
+                            </ul>
                             </div>
                         </div>
                     </div>

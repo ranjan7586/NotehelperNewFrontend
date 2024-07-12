@@ -5,8 +5,6 @@ import config from '../config';
 
 const Banner = () => {
   const [notes, setNotes] = useState([]);
-  console.log(config.apiUrl);
-
   const getAllNotes = async () => {
     try {
       const { data } = await axios.get(`${config.apiUrl}/api/v1/notes`);

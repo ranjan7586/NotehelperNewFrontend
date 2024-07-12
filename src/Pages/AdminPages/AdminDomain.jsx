@@ -18,6 +18,10 @@ const AdminDomain = () => {
     const [domains, setDomains] = useState([])
     const [name, setName] = useState('');
     const { auth, updateAuth } = useAuth();
+    const navigate = useNavigate();
+    if(auth?.user?.role!="admin"){
+        navigate('/dashboard');
+    }
   
     //handle Form
     const handleSubmit = async (e) => {
@@ -42,7 +46,6 @@ const AdminDomain = () => {
         try {
             const { data } = await axios.get(`${config.apiUrl}/api/v1/domains`);
             if (data?.success) {
-                console.log(data)
                 setDomains(data?.domains);
             }
         } catch (error) {
@@ -58,7 +61,6 @@ const AdminDomain = () => {
         try {
             const { data } = await axios.put(`${config.apiUrl}/api/v1//update-domain/${selected._id}`, { name: updatedName })
             if (data.success) {
-                console.log(data)
                 toast.success(`${updatedName} is Updated Successfully`)
                 setSelected(null)
                 setUpdatedName("")
@@ -79,7 +81,6 @@ const AdminDomain = () => {
         try {
             const { data } = await axios.delete(`${config.apiUrl}/api/v1/delete-domain/${deleteid}`)
             if (data.success) {
-                console.log(data)
                 toast.success(`${data.message}`)
                 getAllDomains()
             }
@@ -91,13 +92,7 @@ const AdminDomain = () => {
             toast.error("Something Went Wrong in Deleting the Domains")
         }
     };
-    if(auth?.user?.role!="admin"){
-        return(
-            <>
-                <Dashboard/>
-            </>
-        )
-    }
+  
 
     return (
         <div>

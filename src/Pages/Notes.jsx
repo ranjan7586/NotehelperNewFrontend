@@ -11,7 +11,7 @@ const Notes = () => {
     const [checked, setChecked] = useState([]);
     const [filternotes, setFilterNotes] = useState(0);
     const [pages, setPages] = useState(1);
-    const limit = 3; // Define limit of notes per page
+    const limit = 6; // Define limit of notes per page
     const [count, setCount] = useState(0); // Total number of notes
 
     // Fetch notes from the API
@@ -58,7 +58,7 @@ const Notes = () => {
 
     const filterNotes = async () => {
         try {
-            const { data } = await axios.post(`${config.apiUrl}/api/v1/notes/note-filters`, { checked })
+            const { data } = await axios.get(`${config.apiUrl}/api/v1/notes/note-filter-domain/${checked}`)
             setNotes(data?.notes)
         } catch (error) {
             console.log(error)
@@ -69,10 +69,8 @@ const Notes = () => {
         if (value) {
             all.push(id);
             setFilterNotes(1);
-            console.log("on")
         } else {
             all = all.filter((c) => c !== id)
-            console.log("off")
             setFilterNotes(0);
             setPage(1)
         }

@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table';
-import { Link, Navigate, NavLink } from 'react-router-dom';
+import { Link, Navigate, NavLink, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
@@ -16,6 +16,10 @@ const AdminDashboard = () => {
     const [email, setEmail] = useState('');
     const [user, setUser] = useState();
     const handleClose = () => setShow(false);
+    const navigate = useNavigate();
+    if(auth?.user?.role!="admin"){
+        navigate('/dashboard');
+    }
     const handleShow = () => {
         setName(auth?.user?.name || '');
         setEmail(auth?.user?.email || '');
@@ -23,7 +27,6 @@ const AdminDashboard = () => {
     };
 
     const handleUpdate = async () => {
-        console.log(`Name: ${name}, Email: ${email}`);
         try {
             const response = await axios.put(`${config.apiUrl}/api/v1/profile`, { name, email });
             const updatedUser = response?.data?.updatedUser;
@@ -50,13 +53,6 @@ const AdminDashboard = () => {
         getUserDetails();
     }, [auth]);
 
-    if(auth?.user?.role!="admin"){
-        return(
-            <>
-                <Dashboard/>
-            </>
-        )
-    }
 
     return (
         <div>

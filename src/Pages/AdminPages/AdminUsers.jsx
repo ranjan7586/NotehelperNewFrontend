@@ -13,15 +13,17 @@ const AdminUsers = () => {
     const [userid, setUserId] = useState('');
     const [role, setRole] = useState('');
     const { auth, updateAuth } = useAuth();
+    const navigate = useNavigate();
+    if(auth?.user?.role!="admin"){
+        navigate('/dashboard');
+    }
 
     const getUsers = async () => {
         // console.log(axios.defaults.headers['common']);
         try {
             if (auth) {
-                console.log(axios.defaults.headers.common['Authorization']);
                 
                 const { data } = await axios.get(`${config.apiUrl}/api/v1/admin/get-users`);
-                console.log(data)
                 if (data?.success) {
                     setUsers(data.users)
                 }
@@ -33,8 +35,6 @@ const AdminUsers = () => {
     }
     useEffect(() => {
         if (auth.token && axios.defaults.headers.common['Authorization']) {
-            console.log(auth);
-            console.log(axios.defaults.headers.common['Authorization']);
             getUsers();
             // console.log(auth);
         }
@@ -67,13 +67,6 @@ const AdminUsers = () => {
             console.log(error);
         }
     };
-    if(auth?.user?.role!="admin"){
-        return(
-            <>
-                <Dashboard/>
-            </>
-        )
-    }
     return (
         <div>
             <AdminView />

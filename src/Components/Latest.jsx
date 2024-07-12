@@ -20,7 +20,6 @@ const Latest = () => {
     });
     const notesArray = Object.values(notes); // Convert the object to an array
     const firstSixNotes = notesArray.slice(0, 6);
-    console.log(firstSixNotes);
     const imageStyle = () => ({
         height: '200px',
         width: '370px'

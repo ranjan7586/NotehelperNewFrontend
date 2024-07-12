@@ -20,7 +20,6 @@ const UserDashboard = () => {
     };
 
     const handleUpdate = async () => {
-        console.log(`Name: ${name}, Email: ${email}`);
         try {
             const response = await axios.put(`${config.apiUrl}/api/v1/profile`, { name, email });
             const updatedUser = response?.data?.updatedUser;

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import config from '../config';
+import { toast } from 'react-toastify';
 
 const Search = () => {
     const [loading, setLoading] = useState(false);
@@ -13,7 +14,7 @@ const Search = () => {
         try {
             setLoading(true)
             const { data } = await axios.get(`${config.apiUrl}/api/v1/notes/search-note/${key}`)
-            console.log(data.notes);
+            toast.error(data.message);
 
             setValues(data.notes)
             navigate('/search');
@@ -58,7 +59,7 @@ const Search = () => {
                             type='search'
                             placeholder='Search Here ...'
                             aria-label='Search'
-                            value={values.keyword}
+                            value={values?.keyword}
                             onChange={(e) => setKey(e.target.value)}
                         />
                         <button className='btn btn-outline-success' type='submit'>

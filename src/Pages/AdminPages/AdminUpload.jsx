@@ -10,7 +10,6 @@ import { useAuth } from '../../Context/auth';
 import Dashboard from '../Dashboard';
 const AdminUpload = () => {
 
-    const navigate = useNavigate();
     const [domains, setDomains] = useState([]);
     const [domain, setDomain] = useState(null);
     const [image, setImage] = useState('');
@@ -20,12 +19,15 @@ const AdminUpload = () => {
     const [description, setDescription] = useState('');
     const [loading, setLoading] = useState(false);
     const { auth, updateAuth } = useAuth();
+    const navigate = useNavigate();
+    if(auth?.user?.role!="admin"){
+        navigate('/dashboard');
+    }
   
     const getAllDomains = async () => {
         try {
             const { data } = await axios.get(`${config.apiUrl}/api/v1/domains`);
             if (data?.success) {
-                console.log(data);
                 setDomains(data?.domains);
             }
         } catch (error) {
@@ -41,7 +43,6 @@ const AdminUpload = () => {
     // Handle domain selection
     const handleDomainSelect = (selectedOption) => {
         setDomain(selectedOption);
-        console.log(selectedOption.value);
     };
 
     // Transform domains data for react-select
@@ -64,14 +65,12 @@ const AdminUpload = () => {
             const { data } = await axios.post(`${config.apiUrl}/api/v1/notes/create-note`, noteValues, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
-            console.log(data)
             if (data?.success) {
                 toast.success(`${name} is Created`);
                 navigate('/dashboard/admin/notes')
                 // getAllDomains();
             }
             else if (data?.status == 501) {
-                console.log(data.message);
                 toast.error(data.message)
             }
             else {
@@ -87,13 +86,7 @@ const AdminUpload = () => {
             setLoading(false); // Set loading to false after receiving the response
         }
     }
-    if(auth?.user?.role!="admin"){
-        return(
-            <>
-                <Dashboard/>
-            </>
-        )
-    }
+ 
 
     return (
         <div>
