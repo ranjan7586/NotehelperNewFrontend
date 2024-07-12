@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import config from '../config';
 import { Checkbox } from 'antd';
 
@@ -60,6 +60,8 @@ const Notes = () => {
         try {
             const { data } = await axios.get(`${config.apiUrl}/api/v1/notes/note-filter-domain/${checked}`)
             setNotes(data?.notes)
+            setPages(Math.ceil(data?.count / limit)); // Calculate total pages
+            setCount(data?.count);
         } catch (error) {
             console.log(error)
         }
@@ -119,7 +121,9 @@ const Notes = () => {
                                     {notes.map((note, index) => (
                                         <div key={index} className="col-lg-4 col-md-4 all des">
                                             <div className="product-item">
-                                                <a href="#"><img style={{ height: '200px', width: '370px' }} src={note?.imageUrl} alt={note?.title} /></a>
+                                                <a href="#">
+                                                    <img style={{ height: '200px', width: '370px' }} src={note?.imageUrl} alt={note?.title} />
+                                                </a>
                                                 <div className="down-content">
                                                     <a href="#">
                                                         <h4>{note?.title}</h4>
@@ -127,17 +131,20 @@ const Notes = () => {
                                                     <h6 className='mb-3'>{note?.name}</h6>
                                                     <p>{note?.domain?.name}</p>
                                                     <ul className="stars">
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
-                                                        <li><i className="fa fa-star" /></li>
+                                                        <li>
+                                                            <button className="btn btn-danger mt-5">
+                                                                <a href={note?.noteUrl} style={{ color: 'white', textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
+                                                                    Download
+                                                                </a>
+                                                            </button>
+                                                        </li>
                                                     </ul>
                                                     <span>
-                                                        <button className="btn btn-danger mt-5">
-                                                            <a href={note?.noteUrl} style={{ color: 'white', textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
-                                                                Download
-                                                            </a>
+                                                        <button className="btn btn-success mt-5">
+                                                            <Link to={`/note-details/${note?._id}`} style={{ color: "#fff" }}>
+                                                                Details
+                                                            </Link>
+
                                                         </button>
                                                     </span>
                                                 </div>

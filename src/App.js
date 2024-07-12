@@ -20,6 +20,7 @@ import Address from './Pages/Address';
 import Disclaimer from './Pages/Disclaimer';
 import Feedback from './Pages/Feedback';
 import Search from './Pages/Search';
+import NoteDetails from './Pages/NoteDetails';
 
 
 const App = () => {
@@ -43,6 +44,8 @@ const App = () => {
       <Route path='/admin/create-domain' element={<AdminDomain />} />
       <Route path='/admin/update-note/:slug' element={<AdminUpdate />} />
       <Route path='/user/upload-note' element={<UserUpload />} />
+      <Route path='/note-details/:slug' element={<NoteDetails/>}/>
+
 
     </Routes>
   )

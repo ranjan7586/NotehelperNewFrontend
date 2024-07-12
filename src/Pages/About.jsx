@@ -9,7 +9,7 @@ const AboutPage = () => {
                         <div className="col-md-12">
                             <div className="text-content">
                                 <h4>about us</h4>
-                                <h2>our company</h2>
+                                <h2>our Group</h2>
                             </div>
                         </div>
                     </div>
@@ -31,13 +31,13 @@ const AboutPage = () => {
                         <div className="col-md-6">
                             <div className="left-content">
                                 <h4>Who we are &amp; What we do?</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br /><br />Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis.</p>
-                                <ul className="social-icons">
-                                    <li><a href="#"><i className="fa fa-facebook" /></a></li>
-                                    <li><a href="#"><i className="fa fa-twitter" /></a></li>
-                                    <li><a href="#"><i className="fa fa-linkedin" /></a></li>
-                                    <li><a href="#"><i className="fa fa-behance" /></a></li>
-                                </ul>
+                                <p>Hello from GROUP B. We are dedicated MERN Stack devlopers of this project.<br></br>I am Ranjan Jana,along with other project memebers Sanjoy Manna,Sourav Mondal,Pratyay Samanta have given all their best efforts and knowledge to make this project efficienty.</p>
+                                {/* <ul className="social-icons">
+                                     <li><a href="#"><i className="fa-brands fa-facebook" /></a></li>
+                                     <li><a href="#"><i className="fa-brands fa-x-twitter"></i></a></li>
+                                      <li><a href="#"><i className="fa-brands fa-linkedin" /></a></li>
+                                     <li><a href="#"><i className="fa-whatsapp fa-brands" /></a></li>
+                                </ul> */}
                             </div>
                         </div>
                     </div>
@@ -58,18 +58,18 @@ const AboutPage = () => {
                                     <div className="hover-effect">
                                         <div className="hover-content">
                                             <ul className="social-icons">
-                                                <li><a href="#"><i className="fa fa-facebook" /></a></li>
-                                                <li><a href="#"><i className="fa fa-twitter" /></a></li>
-                                                <li><a href="#"><i className="fa fa-linkedin" /></a></li>
-                                                <li><a href="#"><i className="fa fa-behance" /></a></li>
+                                                <li><a href="#"><i className="fa-brands fa-facebook" /></a></li>
+                                                <li><a href="#"><i className="fa-brands fa-x-twitter"></i></a></li>
+                                                <li><a href="#"><i className="fa-brands fa-linkedin" /></a></li>
+                                                <li><a href="#"><i className="fa-whatsapp fa-brands" /></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="down-content">
-                                    <h4>Johnny William</h4>
-                                    <span>CO-Founder</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+                                    <h4>Kaustav Roy</h4>
+                                    <span>Assistant Professor</span>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -80,18 +80,18 @@ const AboutPage = () => {
                                     <div className="hover-effect">
                                         <div className="hover-content">
                                             <ul className="social-icons">
-                                                <li><a href="#"><i className="fa fa-facebook" /></a></li>
-                                                <li><a href="#"><i className="fa fa-twitter" /></a></li>
-                                                <li><a href="#"><i className="fa fa-linkedin" /></a></li>
-                                                <li><a href="#"><i className="fa fa-behance" /></a></li>
+                                                 <li><a href="#"><i className="fa-brands fa-facebook" /></a></li>
+                                                 <li><a href="#"><i className="fa-brands fa-x-twitter"></i></a></li>
+                                                  <li><a href="#"><i className="fa-brands fa-linkedin" /></a></li>
+                                                 <li><a href="#"><i className="fa-whatsapp fa-brands" /></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="down-content">
-                                    <h4>Karry Pitcher</h4>
-                                    <span>Product Expert</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+                                    <h4>Sourav Mondal</h4>
+                                    <span>Student</span>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -102,18 +102,18 @@ const AboutPage = () => {
                                     <div className="hover-effect">
                                         <div className="hover-content">
                                             <ul className="social-icons">
-                                                <li><a href="#"><i className="fa fa-facebook" /></a></li>
-                                                <li><a href="#"><i className="fa fa-twitter" /></a></li>
-                                                <li><a href="#"><i className="fa fa-linkedin" /></a></li>
-                                                <li><a href="#"><i className="fa fa-behance" /></a></li>
+                                                 <li><a href="#"><i className="fa-brands fa-facebook" /></a></li>
+                                                 <li><a href="#"><i className="fa-brands fa-x-twitter"></i></a></li>
+                                                  <li><a href="#"><i className="fa-brands fa-linkedin" /></a></li>
+                                                 <li><a href="#"><i className="fa-whatsapp fa-brands" /></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="down-content">
-                                    <h4>Michael Soft</h4>
-                                    <span>Chief Marketing</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+                                    <h4>Ranjan Jana</h4>
+                                    <span>Student</span>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -124,18 +124,18 @@ const AboutPage = () => {
                                     <div className="hover-effect">
                                         <div className="hover-content">
                                             <ul className="social-icons">
-                                                <li><a href="#"><i className="fa fa-facebook" /></a></li>
-                                                <li><a href="#"><i className="fa fa-twitter" /></a></li>
-                                                <li><a href="#"><i className="fa fa-linkedin" /></a></li>
-                                                <li><a href="#"><i className="fa fa-behance" /></a></li>
+                                                 <li><a href="#"><i className="fa-brands fa-facebook" /></a></li>
+                                                 <li><a href="#"><i className="fa-brands fa-x-twitter"></i></a></li>
+                                                  <li><a href="#"><i className="fa-brands fa-linkedin" /></a></li>
+                                                 <li><a href="#"><i className="fa-whatsapp fa-brands" /></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="down-content">
-                                    <h4>Mary Cool</h4>
-                                    <span>Product Specialist</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+                                <h4>Sanjoy Manna</h4>
+                                <span>Student</span>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -146,18 +146,18 @@ const AboutPage = () => {
                                     <div className="hover-effect">
                                         <div className="hover-content">
                                             <ul className="social-icons">
-                                                <li><a href="#"><i className="fa fa-facebook" /></a></li>
-                                                <li><a href="#"><i className="fa fa-twitter" /></a></li>
-                                                <li><a href="#"><i className="fa fa-linkedin" /></a></li>
-                                                <li><a href="#"><i className="fa fa-behance" /></a></li>
+                                                 <li><a href="#"><i className="fa-brands fa-facebook" /></a></li>
+                                                 <li><a href="#"><i className="fa-brands fa-x-twitter"></i></a></li>
+                                                  <li><a href="#"><i className="fa-brands fa-linkedin" /></a></li>
+                                                 <li><a href="#"><i className="fa-whatsapp fa-brands" /></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="down-content">
-                                    <h4>George Walker</h4>
-                                    <span>Product Photographer</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+                                    <h4>Pratyay Samanta</h4>
+                                    <span>Student</span>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -168,18 +168,18 @@ const AboutPage = () => {
                                     <div className="hover-effect">
                                         <div className="hover-content">
                                             <ul className="social-icons">
-                                                <li><a href="#"><i className="fa fa-facebook" /></a></li>
-                                                <li><a href="#"><i className="fa fa-twitter" /></a></li>
-                                                <li><a href="#"><i className="fa fa-linkedin" /></a></li>
-                                                <li><a href="#"><i className="fa fa-behance" /></a></li>
+                                                 <li><a href="#"><i className="fa-brands fa-facebook" /></a></li>
+                                                 <li><a href="#"><i className="fa-brands fa-x-twitter"></i></a></li>
+                                                  <li><a href="#"><i className="fa-brands fa-linkedin" /></a></li>
+                                                 <li><a href="#"><i className="fa-whatsapp fa-brands" /></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="down-content">
-                                    <h4>Kate Town</h4>
-                                    <span>General Manager</span>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+                                    <h4>Brainware University</h4>
+                                    <span>University</span>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -237,7 +237,7 @@ const AboutPage = () => {
                             </div>
                         </div>
                         <div className="col-md-12">
-                            <div className="owl-clients owl-carousel">
+                            {/* <div className="owl-clients owl-carousel">
                                 <div className="client-item">
                                     <img src="images/client-01.png" alt={1} />
                                 </div>
@@ -256,7 +256,7 @@ const AboutPage = () => {
                                 <div className="client-item">
                                     <img src="images/client-01.png" alt={6} />
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

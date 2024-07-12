@@ -35,7 +35,7 @@ const Footer = () => {
                             </div>
                             <div className="col-md-6 mb-4">
                                 <h5 className="text-uppercase mb-3">About Us</h5>
-                                <p>
+                                <p className='text-light font-weight-bold bg-info p-3 rounded'>
                                     Here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use.
                                 </p>
                                 <ul className="list-unstyled mt-5">

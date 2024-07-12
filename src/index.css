@@ -98,6 +98,7 @@ a.filled-button:hover {
 
 .products-heading {
     background-image: url(../public/images/products-heading.jpg);
+    background-size: cover;
 }
 
 .about-heading {
@@ -106,6 +107,9 @@ a.filled-button:hover {
 
 .contact-heading {
     background-image: url(../public/images/contact-heading.jpg);
+}
+.admin-heading{
+    background-image: url(../public/images/admin-heading.jpg);
 }
 
 .page-heading {
@@ -1162,4 +1166,8 @@ footer .inner-content p a {
 .active button{
     color:#fff;
     background-color: #000;
+}
+.team-member img{
+    width: 370px;
+    height: 280px;
 }

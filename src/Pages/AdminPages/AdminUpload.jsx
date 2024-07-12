@@ -67,7 +67,7 @@ const AdminUpload = () => {
             });
             if (data?.success) {
                 toast.success(`${name} is Created`);
-                navigate('/dashboard/admin/notes')
+                navigate('/admin/notes')
                 // getAllDomains();
             }
             else if (data?.status == 501) {

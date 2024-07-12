@@ -15,7 +15,6 @@ const Search = () => {
             setLoading(true)
             const { data } = await axios.get(`${config.apiUrl}/api/v1/notes/search-note/${key}`)
             toast.error(data.message);
-
             setValues(data.notes)
             navigate('/search');
         } catch (error) {
@@ -44,7 +43,7 @@ const Search = () => {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="text-content">
-                                <h4>User dashboard</h4>
+                                <h4>Find Your query</h4>
                                 <h2>Search A Note</h2>
                             </div>
                         </div>
